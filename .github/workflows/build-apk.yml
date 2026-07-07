@@ -1,4 +1,4 @@
-name: Build Android APK
+ name: Build Android APK
 
 on:
   push:
@@ -17,11 +17,17 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
       - name: Install system dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            git zip unzip openjdk-17-jdk python3-pip \
+            git zip unzip python3-pip \
             autoconf automake libtool libtool-bin libltdl-dev \
             pkg-config zlib1g-dev libncurses-dev cmake libffi-dev \
             libssl-dev build-essential ccache gettext
